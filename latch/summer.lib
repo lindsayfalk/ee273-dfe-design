@@ -1,0 +1,30 @@
+* ============================================================
+* FILE: summer.lib
+* DESC: Summer
+*
+* ============================================================
+
+.SUBCKT SUMMER IN_P IN_M PC1_P PC1_M PC2_P PC2_M A B VDD GND
+
+* ── Sampling Stage  ─────────────────────
+M1  A  IN_P  SRC1  GND  nmos  L=L W=W1
+R1  VDD   A  RD
+M2  B  IN_M  SRC1  GND  nmos  L=L W=W1
+R2  VDD   B  RD
+
+      * -- Post cursor 1 stage
+M3 A PC1_P SRC2 GND nmos L=L W=W2
+M4 B PC1_M SRC2 GND nmos L=L W=W2
+
+* -- Post cursor 2 stage
+M5 A PC2_P SRC3 GND nmos L=L W=W3
+M6 B PC2_M SRC3 GND nmos L=L W=W3
+
+* -- Current sources
+* Ideal VCCS rather than FET
+IIS1 SRC1 GND IS1
+IIS2 SRC2 GND IS2
+IIS3 SRC3 GND IS3
+
+.print dc lx7(M1)
+.ENDS SUMMER

@@ -1,0 +1,27 @@
+* ============================================================
+* FILE: latch.lib
+* DESC: CML Latch
+*
+* ============================================================
+
+.SUBCKT LATCH INP INM CLK CLKBAR X Y VDD GND
+
+* ── Sampling Stage  ─────────────────────
+M1  X  INP  SRC1  SRC1  nmos  L=L W=Wlatch
+R1  VDD   X  RD
+M2  Y  INM  SRC1  SRC1  nmos  L=L W=Wlatch
+R2  VDD   Y  RD
+
+* -- Regenerating Stage -----------------
+M3  Y  X    SRC2  SRC2  nmos  L=L W='Wlatch * 2'
+M4  X  Y    SRC2  SRC2  nmos  L=L W='Wlatch * 2'
+
+* -- Current sources
+* Ideal VCCS rather than FET
+GCLK SRC1 GND CLK GND Itail
+GCLKBAR SRC2 GND CLKBAR GND Itail
+      *ICLK SRC1 GND 30u
+      *    ICLKBBAR SRC2 GND 30u
+
+.print dc lx7(M1)
+.ENDS LATCH

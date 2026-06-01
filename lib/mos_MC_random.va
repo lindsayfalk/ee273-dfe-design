@@ -1,0 +1,25 @@
+// mos_MC_random.va
+// monte-carlo model for MOS transistors
+//
+// Revisions:
+//      $Id$
+//      $Author$
+//      $DateTime$
+
+`include "disciplines.vams"
+
+module mos_MC (do, di, go, gi, s); 
+
+inout do, di, go, gi, s;
+electrical do, di, go, gi, s;
+
+parameter real dvth = 0;
+parameter real dbeta = 0;
+
+analog begin
+    V(go,gi)    <+ dvth;
+    I(do,s)     <+ dbeta * I(do,di);
+end 
+
+endmodule
+

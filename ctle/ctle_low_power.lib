@@ -1,0 +1,23 @@
+* ============================================================
+* FILE: ctle_low_power.lib
+* DESC: Low-power CTLE stage (half tail current, for use x2 cascaded)
+* ============================================================           
+
+.SUBCKT CTLE_LOW_POWER INP INM OUTP OUTM VDD GND
+
+* ── Left side: INP → OUTM (inverting) ─────────────────────
+M1  OUTM  INP  SRC1  GND  nmos  L=L W=Wctle
+R1  VDD   OUTM  Rdctle
+I1  SRC1  GND   Ictle
+
+* ── Shared source degeneration ────────────────────────────
+R3  SRC1  SRC2  Rsctle 
+C3  SRC1  SRC2  Csctle  
+
+* ── Right side: INM → OUTP (non-inverting) ────────────────
+M2  OUTP  INM  SRC2  GND  nmos  L=L W=Wctle
+R2  VDD   OUTP  Rdctle
+I2  SRC2  GND   Ictle
+
+.print dc lx7(M1)
+.ENDS CTLE_LOW_POWER

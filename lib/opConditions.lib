@@ -1,0 +1,519 @@
+**************************************************************************
+*
+*
+*
+* 1)To use these models directly by programming in this style: 
+*
+*     .lib 'lib_path/lib_name' corner_name 
+*     
+*
+*  EX: .lib '/class/ee/lib/hspice/opConditions' TTTT
+*        
+*             for typical N,PMOS, Temp, Voltage
+*      
+*  note:
+*      corner_name
+*       TTTT : typical model, typ operating
+*       SSSS : Slow NMOS Slow PMOS model, high temp, low voltage
+*
+*
+******
+.LIB TTTT
+.temp 27
+.param Supply='1.0'
+.lib './model_ptm045.lib' TT
+.endl TTTT
+******
+.LIB TTSS
+.temp 100
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' TT
+.endl TTSS
+******
+.LIB TTFF
+.temp 0
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' TT
+.endl TTFF
+******
+.LIB TTSF
+.temp 100
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' TT
+.endl TTSF
+******
+.LIB TTTF
+.temp 27
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' TT
+.endl TTTF
+******
+.LIB TTTS
+.temp 27
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' TT
+.endl TTTS
+******
+.LIB TTST
+.temp 100
+.param Supply='1.0'
+.lib './model_ptm045.lib' TT
+.endl TTST
+******
+.LIB TTFT
+.temp 0
+.param Supply='1.0'
+.lib './model_ptm045.lib' TT
+.endl TTFT
+******
+.LIB TTFS
+.temp 0
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' TT
+.endl TTFS
+
+******
+.LIB TFTT
+.temp 27
+.param Supply='1.0'
+.lib './model_ptm045.lib' TF
+.endl TFTT
+******
+.LIB TFSS
+.temp 100
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' TF
+.endl TFSS
+******
+.LIB TFFF
+.temp 0
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' TF
+.endl TFFF
+******
+.LIB TFSF
+.temp 100
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' TF
+.endl TFSF
+******
+.LIB TFTF
+.temp 27
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' TF
+.endl TFTF
+******
+.LIB TFTS
+.temp 27
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' TF
+.endl TFTS
+******
+.LIB TFST
+.temp 100
+.param Supply='1.0'
+.lib './model_ptm045.lib' TF
+.endl TFST
+******
+.LIB TFFT
+.temp 0
+.param Supply='1.0'
+.lib './model_ptm045.lib' TF
+.endl TFFT
+******
+.LIB TFFS
+.temp 0
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' TF
+.endl TFFS
+
+******
+.LIB FTTT
+.temp 27
+.param Supply='1.0'
+.lib './model_ptm045.lib' FT
+.endl FTTT
+******
+.LIB FTSS
+.temp 100
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' FT
+.endl FTSS
+******
+.LIB FTFF
+.temp 0
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' FT
+.endl FTFF
+******
+.LIB FTSF
+.temp 100
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' FT
+.endl FTSF
+******
+.LIB FTTF
+.temp 27
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' FT
+.endl FTTF
+******
+.LIB FTTS
+.temp 27
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' FT
+.endl FTTS
+******
+.LIB FTST
+.temp 100
+.param Supply='1.0'
+.lib './model_ptm045.lib' FT
+.endl FTST
+******
+.LIB FTFT
+.temp 0
+.param Supply='1.0'
+.lib './model_ptm045.lib' FT
+.endl FTFT
+******
+.LIB FTFS
+.temp 0
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' FT
+.endl FTFS
+
+******
+.LIB FFTT
+.temp 27
+.param Supply='1.0'
+.lib './model_ptm045.lib' FF
+.endl FFTT
+******
+.LIB FFSS
+.temp 100
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' FF
+.endl FFSS
+******
+.LIB FFFF
+.temp 0
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' FF
+.endl FFFF
+******
+.LIB FFSF
+.temp 100
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' FF
+.endl FFSF
+******
+.LIB FFTF
+.temp 27
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' FF
+.endl FFTF
+******
+.LIB FFTS
+.temp 27
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' FF
+.endl FFTS
+******
+.LIB FFST
+.temp 100
+.param Supply='1.0'
+.lib './model_ptm045.lib' FF
+.endl FFST
+******
+.LIB FFFT
+.temp 0
+.param Supply='1.0'
+.lib './model_ptm045.lib' FF
+.endl FFFT
+******
+.LIB FFFS
+.temp 0
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' FF
+.endl FFFS
+
+******
+.LIB STTT
+.temp 27
+.param Supply='1.0'
+.lib './model_ptm045.lib' ST
+.endl STTT
+******
+.LIB STSS
+.temp 100
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' ST
+.endl STSS
+******
+.LIB STFF
+.temp 0
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' ST
+.endl STFF
+******
+.LIB STSF
+.temp 100
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' ST
+.endl STSF
+******
+.LIB STTF
+.temp 27
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' ST
+.endl STTF
+******
+.LIB STTS
+.temp 27
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' ST
+.endl STTS
+******
+.LIB STST
+.temp 100
+.param Supply='1.0'
+.lib './model_ptm045.lib' ST
+.endl STST
+******
+.LIB STFT
+.temp 0
+.param Supply='1.0'
+.lib './model_ptm045.lib' ST
+.endl STFT
+******
+.LIB STFS
+.temp 0
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' ST
+.endl STFS
+
+******
+.LIB TSTT
+.temp 27
+.param Supply='1.0'
+.lib './model_ptm045.lib' TS
+.endl TSTT
+******
+.LIB TSSS
+.temp 100
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' TS
+.endl TSSS
+******
+.LIB TSFF
+.temp 0
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' TS
+.endl TSFF
+******
+.LIB TSSF
+.temp 100
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' TS
+.endl TSSF
+******
+.LIB TSTF
+.temp 27
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' TS
+.endl TSTF
+******
+.LIB TSTS
+.temp 27
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' TS
+.endl TSTS
+******
+.LIB TSST
+.temp 100
+.param Supply='1.0'
+.lib './model_ptm045.lib' TS
+.endl TSST
+******
+.LIB TSFT
+.temp 0
+.param Supply='1.0'
+.lib './model_ptm045.lib' TS
+.endl TSFT
+******
+.LIB TSFS
+.temp 0
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' TS
+.endl TSFS
+
+******
+.LIB SSTT
+.temp 27
+.param Supply='1.0'
+.lib './model_ptm045.lib' SS
+.endl SSTT
+******
+.LIB SSSS
+.temp 100
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' SS
+.endl SSSS
+******
+.LIB SSFF
+.temp 0
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' SS
+.endl SSFF
+******
+.LIB SSSF
+.temp 100
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' SS
+.endl SSSF
+******
+.LIB SSTF
+.temp 27
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' SS
+.endl SSTF
+******
+.LIB SSTS
+.temp 27
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' SS
+.endl SSTS
+******
+.LIB SSST
+.temp 100
+.param Supply='1.0'
+.lib './model_ptm045.lib' SS
+.endl SSST
+******
+.LIB SSFT
+.temp 0
+.param Supply='1.0'
+.lib './model_ptm045.lib' SS
+.endl SSFT
+******
+.LIB SSFS
+.temp 0
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' SS
+.endl SSFS
+
+******
+.LIB SFTT
+.temp 27
+.param Supply='1.0'
+.lib './model_ptm045.lib' SF
+.endl SFTT
+******
+.LIB SFSS
+.temp 100
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' SF
+.endl SFSS
+******
+.LIB SFFF
+.temp 0
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' SF
+.endl SFFF
+******
+.LIB SFSF
+.temp 100
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' SF
+.endl SFSF
+******
+.LIB SFTF
+.temp 27
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' SF
+.endl SFTF
+******
+.LIB SFTS
+.temp 27
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' SF
+.endl SFTS
+******
+.LIB SFST
+.temp 100
+.param Supply='1.0'
+.lib './model_ptm045.lib' SF
+.endl SFST
+******
+.LIB SFFT
+.temp 0
+.param Supply='1.0'
+.lib './model_ptm045.lib' SF
+.endl SFFT
+******
+.LIB SFFS
+.temp 0
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' SF
+.endl SFFS
+
+******
+.LIB FSTT
+.temp 27
+.param Supply='1.0'
+.lib './model_ptm045.lib' FS
+.endl FSTT
+******
+.LIB FSSS
+.temp 100
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' FS
+.endl FSSS
+******
+.LIB FSFF
+.temp 0
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' FS
+.endl FSFF
+******
+.LIB FSSF
+.temp 100
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' FS
+.endl FSSF
+******
+.LIB FSTF
+.temp 27
+.param Supply='1.1*1.0'
+.lib './model_ptm045.lib' FS
+.endl FSTF
+******
+.LIB FSTS
+.temp 27
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' FS
+.endl FSTS
+******
+.LIB FSST
+.temp 100
+.param Supply='1.0'
+.lib './model_ptm045.lib' FS
+.endl FSST
+******
+.LIB FSFT
+.temp 0
+.param Supply='1.0'
+.lib './model_ptm045.lib' FS
+.endl FSFT
+******
+.LIB FSFS
+.temp 0
+.param Supply='0.9*1.0'
+.lib './model_ptm045.lib' FS
+.endl FSFS
+******
+.LIB statTTTT
+.temp 0
+.param Supply='1.0'
+.lib './model_ptm045.lib' statTT
+.endl FSFS

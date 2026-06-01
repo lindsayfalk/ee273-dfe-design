@@ -1,0 +1,43 @@
+* ============================================================
+* FILE: ctle_high_power.lib
+* DESC: High-power CTLE stage (single stage, full tail current)
+*
+* Topology: differential pair with source degeneration
+*   - Tail current: 1.25 mA per side  (total 2.5 mA, P = 2.5 mW at VDD=1V)
+*   - Drain resistor RD: 400 ohm
+*   - Source degeneration: RS = 400 ohm || CS = 150 fF
+*
+* Pole/zero placement (Razavi method):
+*   Zero:  fz = 1 / (2*pi * RS * CS)
+*   Pole:  fp = 1 / (2*pi * RD * CL)   where CL is total drain capacitance
+*   Boost factor at fz: A = 1 + Gm*RS/2
+*
+* Ports: INP  INM  OUTP  OUTM  VDD  GND
+*
+* Output convention (CS stages are inverting):
+*   OUTP = DRN2 (INM side — non-inverting)
+*   OUTM = DRN1 (INP side — inverting)
+*
+* ============================================================
+
+       .lib '../lib/opConditions.lib' TTTT
+
+.SUBCKT CTLE_HIGH_POWER INP INM OUTP OUTM VDD GND
+
+* ── Left side: INP → OUTM (inverting) ─────────────────────
+M1  OUTM  INP  SRC1  SRC1  nmos  L=45n W=20u
+R1  VDD   OUTM  200
+I1  SRC1  GND   2.5m
+
+* ── Shared source degeneration ────────────────────────────
+* Zero frequency: fz = 1/(2*pi*400*150e-15) ~ 2.65 GHz
+* Students: adjust RS and CS to place the zero at the desired frequency
+R3  SRC1  SRC2  800
+C3  SRC1  SRC2  225f
+
+* ── Right side: INM → OUTP (non-inverting) ────────────────
+M2  OUTP  INM  SRC2  SRC2  nmos  L=45n W=20u
+R2  VDD   OUTP  200
+I2  SRC2  GND   2.5m
+
+.ENDS CTLE_HIGH_POWER

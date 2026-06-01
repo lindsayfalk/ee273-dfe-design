@@ -1,0 +1,37 @@
+* ============================================================
+* FILE: latch.lib
+* DESC: CML Latch
+*
+* ============================================================
+
+.SUBCKT SUM_LATCH IN_P IN_M PC1_P PC1_M PC2_P PC2_M CLK CLKBAR X Y VDD GND
+
+* ── Sampling Stage  ─────────────────────
+M1  X  IN_P  SRC1  GND  nmos  L=L W=W1
+R1  VDD   X  RD
+M2  Y  IN_M  SRC1  GND  nmos  L=L W=W1
+R2  VDD   Y  RD
+
+      * -- Post cursor 1 stage
+M3 X PC1_P SRC2 GND nmos L=L W=W2
+M4 Y PC1_M SRC2 GND nmos L=L W=W2
+
+* -- Post cursor 2 stage
+M5 X PC2_P SRC3 GND nmos L=L W=W3
+M6 Y PC2_M SRC3 GND nmos L=L W=W3
+
+* -- Regenerating Stage -----------------
+M7  Y  X    SRC4  GND  nmos  L=L W='W4 * 2'
+M8  X  Y    SRC4  GND  nmos  L=L W='W4 * 2'
+
+* -- Current sources
+* Ideal VCCS rather than FET
+GIS1 SRC1 GND CLK GND IS1
+GIS2 SRC2 GND CLK GND IS2
+GIS3 SRC3 GND CLK GND IS3
+GREGEN SRC4 GND CLKBAR GND Itail
+      *ICLK SRC1 GND 30u
+      *    ICLKBBAR SRC2 GND 30u
+
+.print dc lx7(Mi1)
+.ENDS SUM_LATCH

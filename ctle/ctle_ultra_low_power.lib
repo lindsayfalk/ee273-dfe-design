@@ -1,0 +1,45 @@
+* ============================================================
+* FILE: ctle_low_power.lib
+* DESC: Low-power CTLE stage (half tail current, for use x2 cascaded)
+*
+* Total power of two cascaded low-power stages equals one high-power stage:
+*   High-power:  2 x 1.25mA  x  1V = 2.5 mW
+*   Low-power:  (2 x 0.625mA x  1V) x 2 stages = 2.5 mW  (same budget)
+*
+* Halving the tail current halves Gm, which changes the boost factor.
+* Students must re-derive RS and CS to achieve the same target boost
+* while accounting for the interstage loading between the two stages
+* (output R of stage 1 drives input C of stage 2).
+*
+* Ports: INP  INM  OUTP  OUTM  VDD  GND
+*
+* Output convention (CS stages are inverting):
+*   OUTP = DRN2 (INM side — non-inverting)
+*   OUTM = DRN1 (INP side — inverting)
+*
+* ============================================================
+
+       .lib "../lib/opConditions.lib" TTTT
+
+           
+
+.SUBCKT CTLE_ULTRA_LOW_POWER INP INM OUTP OUTM VDD GND
+
+* ── Left side: INP → OUTM (inverting) ─────────────────────
+           M1  OUTM  INP  SRC1  SRC1  nmos  L=45n W=6.66u
+R1  VDD   OUTM  380
+           I1  SRC1  GND   0.833m
+
+* ── Shared source degeneration ────────────────────────────
+* Students: recalculate RS and CS for the new Gm
+           R3  SRC1  SRC2  400 
+           C3  SRC1  SRC2  150f
+
+* ── Right side: INM → OUTP (non-inverting) ────────────────
+           M2  OUTP  INM  SRC2  SRC2  nmos  L=45n W=6.66u
+R2  VDD   OUTP  380
+           I2  SRC2  GND   0.833m
+
+.print dc lx7(M1)
+.ENDS CTLE_ULTRA_LOW_POWER
+

@@ -1,0 +1,37 @@
+* ============================================================
+* FILE: latch.lib
+* DESC: CML Latch
+*
+* ============================================================
+
+.PARAM W14 = 5u
+.PARAM W57 = 2.5u
+.PARAM L = 45n
+.PARAM RD = 300
+.PARAM RB = 5k
+           .PARAM C12 = 100f           
+
+.SUBCKT LATCH INP INM CK CKBAR X Y VDD GND
+
+* ── Sampling Stage  ─────────────────────
+M1  X  INP  SRC1  SRC1  nmos  L=L W=W14
+R1  VDD   X  RD
+M2  Y  INM  SRC1  SRC1  nmos  L=L W=W14
+R2  VDD   Y  RD
+
+* -- Regenerating Stage -----------------
+M3  Y  X    SRC2  SRC2  nmos  L=L W=W14
+M4  X  Y    SRC2  SRC2  nmos  L=L W=W14
+
+* -- Current sources and mirror 
+M5  SRC1  G5  GND GND   nmos  L=L W=W57
+M6  SRC2  G6  GND GND   nmos  L=L W=W57
+IR  VDD   GD7 0.5m
+M7  GD7   GD7 GND GND   nmos  L=L W=W57
+R3  GD7   G5  RB
+R4  GD7   G6  RB
+C1  CK    G5  C12
+C2  CKBAR G6  C12
+
+.print dc lx7(M1)
+.ENDS LATCH
