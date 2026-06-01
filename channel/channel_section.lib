@@ -1,0 +1,39 @@
+* ============================================================
+* FILE: channel_section.lib
+* DESC: One section of a scalable channel model
+*       Based on Figure 1(a) from Razavi
+*
+* Topology (left to right):
+*   IN +--[L1=470pH]-----------------------------[L2=77.3pH]--+----------- OUT
+*      +--[R1=5.55Ω]---+   |               |                  |
+*                          [R2=2kΩ]        [R3=100Ω]          [C3=30.9fF]
+*			   |               |                  |
+*                          [C1=200fF]      [C2=80fF]          GND
+*                          |               |
+*                          GND             GND
+*
+*
+* Ports: IN  OUT  GND
+* ============================================================
+
+.SUBCKT CHANNEL_SECTION IN OUT GND
+
+* Series inductor + parallel resistor (left branch)
+L1  IN   N1   470p
+R1  IN   N1   5.55
+
+* First shunt: 2kΩ in series with 200fF
+R2  N1   N2  2k
+C1  N2   GND  200f
+
+* Second shunt: 100Ω in series with 80fF
+R3  N1   N3   100
+C2  N3   GND  80f
+
+* Series inductor (right branch)
+L2  N1   OUT  77.3p
+
+* Output shunt capacitor 30.9fF
+C3  OUT  GND  30.9f
+
+.ENDS CHANNEL_SECTION
