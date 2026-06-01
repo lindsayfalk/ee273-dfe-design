@@ -1,0 +1,48 @@
+* ============================================================
+* FILE: params.spi
+* DESC: Global simulation parameters for EE273 CTLE/DFE assignment
+* ============================================================
+
+* -- Process parameters ------------------------------------
+.PARAM L = 45n
+
+* ── Link parameters ───────────────────────────────────────
+.PARAM BITRATE = 16e9
+.PARAM UI      = '1/BITRATE'
+.PARAM VDD_VAL = 1.0
+
+* ── PRBS source swing ─────────────────────────────────────
+.PARAM V_HIGH  = 0.9
+.PARAM V_LOW   = 0.1
+.PARAM V_CM    = '(V_HIGH + V_LOW) / 2'
+
+* ── Clock parameters ──────────────────────────────────────
+.PARAM Tclock   = '2 * UI'
+.PARAM trise = '0.1 * Tclock'
+
+* -- CTLE parameters ---------------------------------------
+.PARAM Wctle = 2.5u
+.PARAM Rdctle = 600
+.PARAM Ictle = 0.33m
+.PARAM Rsctle = 900
+.PARAM Csctle = 0.01 * STUDENT TODO
+
+* -- Latch and Summer parameters ---------------------------
+.PARAM J = 175 *uA/u
+.PARAM Jinput = 0.01 * STUDENT TODO
+.PARAM Vswing = 0.45 *mV
+.PARAM Itail = 0.01 * STUDENT TODO
+.PARAM RD = 'Vswing / Itail'
+
+.PARAM Wlatch = 'Itail / J'
+
+.PARAM PC1 = 0.01 * STUDENT TODO
+.PARAM PC2 = 0.01 * STUDENT TODO
+.PARAM IS1 = 'Itail / (1+PC1+PC2)'
+.PARAM IS2 = 'PC1 * IS1'
+.PARAM IS3 = 'PC2 * IS1'
+.PARAM W1 = 'IS1 / Jinput'
+.PARAM W2 = '2 * IS2 / J'
+.PARAM W3 = '2 * IS3 / J'
+.PARAM W4 = 'Wlatch'
+
