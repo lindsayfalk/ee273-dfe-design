@@ -25,7 +25,7 @@
 .PARAM Rdctle = 600
 .PARAM Ictle = 0.33m
 .PARAM Rsctle = 900
-.PARAM Csctle = 0.01 * 273.74f $ calc 273.74 ff
+.PARAM Csctle = 273.74f * calc 273.74 ff
 
 * -- Latch and Summer parameters ---------------------------
 .PARAM J = 175 *uA/u
